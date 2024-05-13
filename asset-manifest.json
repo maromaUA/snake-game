@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/maromaua.github.io/snake-game/static/css/main.f855e6bc.css",
-    "main.js": "/maromaua.github.io/snake-game/static/js/main.d1fe8e66.js",
-    "static/js/453.028da8af.chunk.js": "/maromaua.github.io/snake-game/static/js/453.028da8af.chunk.js",
-    "static/media/logo.svg": "/maromaua.github.io/snake-game/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/maromaua.github.io/snake-game/index.html",
-    "main.f855e6bc.css.map": "/maromaua.github.io/snake-game/static/css/main.f855e6bc.css.map",
-    "main.d1fe8e66.js.map": "/maromaua.github.io/snake-game/static/js/main.d1fe8e66.js.map",
-    "453.028da8af.chunk.js.map": "/maromaua.github.io/snake-game/static/js/453.028da8af.chunk.js.map"
+    "main.css": "/snake-game/static/css/main.f855e6bc.css",
+    "main.js": "/snake-game/static/js/main.61703845.js",
+    "static/js/453.028da8af.chunk.js": "/snake-game/static/js/453.028da8af.chunk.js",
+    "static/media/logo.svg": "/snake-game/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/snake-game/index.html",
+    "main.f855e6bc.css.map": "/snake-game/static/css/main.f855e6bc.css.map",
+    "main.61703845.js.map": "/snake-game/static/js/main.61703845.js.map",
+    "453.028da8af.chunk.js.map": "/snake-game/static/js/453.028da8af.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.d1fe8e66.js"
+    "static/js/main.61703845.js"
   ]
 }
