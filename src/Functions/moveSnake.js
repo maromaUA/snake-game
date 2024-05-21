@@ -1,5 +1,6 @@
 import { addDotSnake } from "../Redux/game/operations"
 import { store } from "../Redux/store"
+import snakeEats from "./snakeEats"
 import snakeTouchedEdge from "./snakeTouchedEdge"
 
 
@@ -24,7 +25,9 @@ const moveSnake = () => {
           store.dispatch(addDotSnake([head[0], head[1]+10]))
                 break;
       }
-      snakeTouchedEdge()
+      // snakeTouchedEdge()
+      // snakeEats()
+
     }
 
 export default moveSnake

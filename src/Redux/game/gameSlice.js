@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addDotSnake, changeDirection, changeGameStatus } from './operations';
+import { addDotSnake, changeDirection, changeFoodCoord, changeGameStatus, increaseSnake } from './operations';
 
 
 const gameSlice = createSlice({
@@ -16,10 +16,8 @@ const gameSlice = createSlice({
   extraReducers: builder => {
     
     builder.addCase(addDotSnake, (state, {payload})=>{
-      console.log("payload", payload);
       state.snakeDots.push(payload)
-      state.snakeDots.shift();
-     
+      state.snakeDots.shift(); 
      
     })
     .addCase(changeGameStatus, (state, {payload})=>{
@@ -27,6 +25,12 @@ const gameSlice = createSlice({
     })
     .addCase(changeDirection, (state, {payload})=>{
       state.direction = payload;
+    })
+    .addCase(changeFoodCoord, (state, {payload})=>{
+      state.food = [...payload];
+    })
+    .addCase(increaseSnake, (state, {payload})=>{
+      state.snakeDots = [...payload]
     })
   }
   })
