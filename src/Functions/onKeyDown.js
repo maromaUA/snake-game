@@ -1,21 +1,28 @@
-import { changeDirection } from "../Redux/game/operations";
+import { changeDirection, changeGameStatus } from "../Redux/game/operations";
 import { store } from "../Redux/store";
 
 
 const onKeyDown = e => {
+  const direction = store.getState().game.direction;
+  const status = store.getState().game.isPlay;
+  const gameOver = store.getState().game.gameOver;
+  console.log(e.code );
     switch(e.code){
       case 'ArrowRight':
-        store.dispatch(changeDirection("right"))
+        direction!=="left" && store.dispatch(changeDirection("right"))
         break;
       case 'ArrowLeft':
-        store.dispatch(changeDirection("left"))
+        direction!=="right" && store.dispatch(changeDirection("left"))
         break;
       case 'ArrowUp':
-        store.dispatch(changeDirection("up"))
+        direction!=="down" && store.dispatch(changeDirection("up"))
         break;
       case 'ArrowDown':
-        store.dispatch(changeDirection("down"))
+        direction!=="up" && store.dispatch(changeDirection("down"))
         break;
+      case 'Space':
+       gameOver==false && store.dispatch(changeGameStatus(!status))
+       break;
     }
   }
 

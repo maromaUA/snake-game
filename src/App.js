@@ -2,8 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import PlayArea from './Components/PlayArea/PlayArea';
 import Snake from './Components/Snake/Snake';
-import { useEffect, useRef } from 'react';
-import {getGameStatus, getSnake } from './Redux/game/selector';
+import { useEffect, useRef, useState } from 'react';
+import {getFood, getGameOver, getGameSpeed, getGameStatus, getSnake } from './Redux/game/selector';
 import { useDispatch, useSelector } from 'react-redux';
 import { addDotSnake, changeDirection } from './Redux/game/operations';
 import StartBtn from './Components/StartBtn/StartBtn';
@@ -13,6 +13,10 @@ import onKeyDown from './Functions/onKeyDown';
 import snakeTouchedEdge from './Functions/snakeTouchedEdge';
 import Food from './Components/Food/Food';
 import snakeEats from './Functions/snakeEats';
+import snakeCollapse from './Functions/snakeCollapse';
+import Modal from './Components/Modal/Modal';
+import GameOver from './Components/GameOver/GameOver';
+import ScoreBoard from './Components/ScoreBoard/ScoreBoard';
 
 
 
@@ -25,18 +29,20 @@ const dispatch = useDispatch()
 const status = useSelector(getGameStatus)
 const intervalRef = useRef()
 const snake = useSelector(getSnake)
-console.log("snake current", snake);
+const speed = useSelector(getGameSpeed)
+const gameOver = useSelector(getGameOver)
 
   useEffect(()=>{
-    
-    if (status){
-      const intervalId = setInterval(moveSnake, 200)
+    if (status && gameOver===false){
+      const intervalId = setInterval(moveSnake, speed)
       intervalRef.current = intervalId;
     }
     else{
       clearInterval(intervalRef.current)
     }
-  },[status])
+    
+  },[status, gameOver])
+
 
   useEffect (()=> {
     document.addEventListener('keydown', onKeyDown)
@@ -48,7 +54,8 @@ console.log("snake current", snake);
   useEffect(()=>{
     snakeTouchedEdge();
     snakeEats();
-  }, [snake])
+    snakeCollapse();
+  },[snake])
   
   
  
@@ -56,6 +63,8 @@ console.log("snake current", snake);
 
   return (
     <div className="App">
+       {gameOver&&<Modal><GameOver/></Modal>}
+       <ScoreBoard/>
      <PlayArea>
      <Snake/>
      <Food/>

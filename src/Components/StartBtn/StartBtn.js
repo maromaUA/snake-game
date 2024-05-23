@@ -12,7 +12,7 @@ const StartBtn = () => {
 return <button className={css.buttonWrapper} onClick={()=>{
     dispatch(changeGameStatus(!status))
 }}>
-    Start
+    {status?"Stop":"Start"}
 </button>
 
 }

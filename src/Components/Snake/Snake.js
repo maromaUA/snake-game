@@ -8,8 +8,7 @@ const Snake = () => {
   console.log("snakeArray", snakeArray)
 
   const snake = snakeArray.map((dot, i)=>
-    { console.log("current dot X", `${dot[0]}px`);
-      console.log("current dot Y", `${dot[1]}px`);
+    { 
     return <div key={i} style={{left:`${dot[0]}px`, top:`${dot[1]}px`}} className={css.snakeDot}>
     </div>
     }

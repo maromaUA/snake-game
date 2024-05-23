@@ -1,5 +1,6 @@
 import { addDotSnake } from "../Redux/game/operations"
 import { store } from "../Redux/store"
+import snakeCollapse from "./snakeCollapse"
 import snakeEats from "./snakeEats"
 import snakeTouchedEdge from "./snakeTouchedEdge"
 
@@ -27,6 +28,7 @@ const moveSnake = () => {
       }
       // snakeTouchedEdge()
       // snakeEats()
+      // snakeCollapse()
 
     }
 
