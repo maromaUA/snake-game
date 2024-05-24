@@ -14,13 +14,16 @@ const snakeEats = () => {
      store.dispatch(changeFoodCoord(getRandomFood()))
      snakeIncrease()
      store.dispatch(addScore())
-    
-     
-     
+     if(speed>26){
+      store.dispatch(changeGameSpeed(speed-2.5))
+     } 
+     else{
+      store.dispatch(changeGameSpeed(speed-0.5))
+     }
   }
 
 }
 
 
 
-export default snakeEats
+export default snakeEats 

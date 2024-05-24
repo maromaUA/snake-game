@@ -16,17 +16,16 @@ const Modal = ({ children }) => {
   const handleOnClick = () => {
     startNewGame();
   };
-  const handleBackDropClick = e => {
-    e.currentTarget === e.target && startNewGame()
-  };
+  // const handleBackDropClick = e => {
+  //   e.currentTarget === e.target && startNewGame()
+  // };
   const onCloseEscape = e => {
     e.code === 'Escape' && startNewGame();
   };
   return (
-    <div className={css.backdrop} onClick={handleBackDropClick}>
+    <div className={css.backdrop}>
       <div className={css.modal}>
         {children}
-        <span className={css.close} onClick={handleOnClick}></span>
       </div>
     </div>
   );

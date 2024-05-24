@@ -31,8 +31,10 @@ const intervalRef = useRef()
 const snake = useSelector(getSnake)
 const speed = useSelector(getGameSpeed)
 const gameOver = useSelector(getGameOver)
+const food = useSelector(getFood)
 
   useEffect(()=>{
+    clearInterval(intervalRef.current)
     if (status && gameOver===false){
       const intervalId = setInterval(moveSnake, speed)
       intervalRef.current = intervalId;
@@ -41,7 +43,7 @@ const gameOver = useSelector(getGameOver)
       clearInterval(intervalRef.current)
     }
     
-  },[status, gameOver])
+  },[status, gameOver, food])
 
 
   useEffect (()=> {

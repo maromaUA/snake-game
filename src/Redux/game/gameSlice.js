@@ -4,7 +4,7 @@ import { addDotSnake, addScore, changeDirection, changeFoodCoord, changeGameOver
 const initialState = {
   snakeDots: [[0,0], [10,0]],
       food:[200,200],
-      speed:60,
+      speed:100,
       score:0,
       direction:"right",
       isPlay:false,
