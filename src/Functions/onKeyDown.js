@@ -7,6 +7,7 @@ const onKeyDown = e => {
   const status = store.getState().game.isPlay;
   const gameOver = store.getState().game.gameOver;
   console.log(e.code );
+  console.log("Direction:", direction);
     switch(e.code){
       case 'ArrowRight':
         direction!=="left" && store.dispatch(changeDirection("right"))

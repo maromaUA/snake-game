@@ -5,7 +5,6 @@ import css from './Snake.module.scss'
 const Snake = () => {
   
   const snakeArray = useSelector(getSnake)
-  console.log("snakeArray", snakeArray)
 
   const snake = snakeArray.map((dot, i)=>
     { 
