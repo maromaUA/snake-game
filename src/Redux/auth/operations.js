@@ -74,3 +74,24 @@ const setAuthHeader = token => {
       }
     }
   );
+
+  export const changeRecordOperation = createAsyncThunk(
+    'auth/changeRecord',
+    async (data, thunkAPI) => {
+      try {
+        const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+        if (persistedToken === null) {
+          // If there is no token, exit without performing any request
+          return thunkAPI.rejectWithValue('Unable to fetch user');
+        }
+        setAuthHeader(persistedToken);
+        console.log("record:", data)
+        const res = await axios.patch('/users/changeRecord', data);
+    
+        return res.data;
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error.message);
+      }
+    }
+  );

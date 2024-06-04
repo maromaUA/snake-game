@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { registerOperation } from '../../Redux/auth/operations';
 import css from './Register.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, unstable_HistoryRouter, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import * as Yup from 'yup';
@@ -27,6 +27,7 @@ const RegistrSchema = Yup.object().shape({
 const Registration = () => {
   const dispatch = useDispatch();
   const [info, setInfo] = useState(false);
+  const navigate = useNavigate() 
 
   const onFormSubmit = async (credentials, { resetForm }) => {
     const { email, password, name } = credentials;
@@ -37,6 +38,7 @@ const Registration = () => {
     }
     setInfo('ok');
     resetForm();
+    navigate('/')
   };
 
   return (

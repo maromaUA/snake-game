@@ -4,7 +4,16 @@
     margin-right: auto;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     padding: 1em;
     font-size: large;
     font-weight: 600;
+    color: #647b43;
+}
+.logOut{
+    border: 1px solid black;
+    padding: 0.5em 1em;
+    &:hover{
+    color: #3f4e2b;
+    }
 }
