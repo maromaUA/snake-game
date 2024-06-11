@@ -9,6 +9,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import HomePage from './Pages/HomePage/HomePage';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import RestrictedRoute from './Components/RestrictedRoute/RestrictedRoute';
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 
@@ -21,7 +22,17 @@ function App() {
   }, [dispatch]);
   
   return isRefreshing ? (
-    <p>Refreshing user...</p>
+    <ClipLoader
+        color="green"
+        cssOverride={
+          {
+            display: "block",
+            margin: "200px auto",
+            
+          }
+        }
+        size={150}
+    />
   ) : (
     <Routes>
      
