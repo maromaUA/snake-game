@@ -15,8 +15,8 @@ const ScoreBoard = () => {
     return (
         <div className={css.wrapper}>
              <div>{user.name}</div>
-             <div>Score:{score} </div>
-             <div>Record:{user.record}</div>
+             <div>Score: {score} </div>
+             <div>Record: {user.record}</div>
              <div className={css.logOut} onClick={handleLogOut}>Logout</div>
         </div>
     )
