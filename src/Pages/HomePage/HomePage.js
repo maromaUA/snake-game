@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import PlayArea from "../../Components/PlayArea/PlayArea"
 import Snake from "../../Components/Snake/Snake"
 import {getFood, getGameOver, getGameSpeed, getGameStatus, getSnake } from "../../Redux/game/selector"
@@ -16,18 +16,23 @@ import Modal from "../../Components/Modal/Modal";
 import GameOver from "../../Components/GameOver/GameOver";
 import ScoreBoard from "../../Components/ScoreBoard/ScoreBoard";
 import css from './HomePage.module.scss'
+import Information from "../../Components/Information/Information";
 
 
 const HomePage = () => {
 
     const dispatch = useDispatch()  
-
+    const [info, setInfo] = useState(false)
     const status = useSelector(getGameStatus)
     const intervalRef = useRef()
     const snake = useSelector(getSnake)
     const speed = useSelector(getGameSpeed)
     const gameOver = useSelector(getGameOver)
     const food = useSelector(getFood)
+
+    const onCloseModal = () => {
+      setInfo(false)
+    }
     
       useEffect(()=>{
         clearInterval(intervalRef.current)
@@ -59,12 +64,16 @@ const HomePage = () => {
   return (
     <div className={css.wrapper}>
        {gameOver&&<Modal><GameOver/></Modal>}
+       {info&&<Modal><Information onClose={onCloseModal}/></Modal>}
        <ScoreBoard/>
      <PlayArea>
      <Snake/>
      <Food/>
      </PlayArea>
      <StartBtn/>
+     <button className={css.infoBtn} onClick={()=>{
+      setInfo(true)
+     }}>Info</button>
    
      
    
