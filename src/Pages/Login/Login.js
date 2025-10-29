@@ -69,7 +69,7 @@ const Login = () => {
 
             {error && <FormMessage>Wrong password or email</FormMessage>}
             <Button>Login</Button>
-            {/* <Button type='button' handler={handleGuestClick}>Guest mode</Button> */}
+            <Button type='button' handler={handleGuestClick}>Guest mode</Button>
             <p>
               Don't have an account ?{' '}
               <Link className={css.formLink} to="/register">
