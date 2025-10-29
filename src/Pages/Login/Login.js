@@ -1,13 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { logInOperation } from '../../Redux/auth/operations';
 import css from './Login.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import { useState } from 'react';
 import Input from '../../Shared/Components/Input/input'
 import Button from '../../Shared/Components/Button/Button';
 import FormMessage from '../../Shared/Components/FormMessage/FormMessage'
+import { loginAsGuest } from '../../Redux/auth/authSlice';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -21,6 +22,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
 
+  const navigate = useNavigate();
+
   const onFormSubmit = async (credentials, { resetForm }) => {
     const result = await dispatch(logInOperation(credentials));
 
@@ -29,6 +32,11 @@ const Login = () => {
       return;
     }
     resetForm();
+  };
+
+  const handleGuestClick = () => {
+    dispatch(loginAsGuest())
+    navigate("/");
   };
 
   return (
@@ -61,6 +69,7 @@ const Login = () => {
 
             {error && <FormMessage>Wrong password or email</FormMessage>}
             <Button>Login</Button>
+            {/* <Button type='button' handler={handleGuestClick}>Guest mode</Button> */}
             <p>
               Don't have an account ?{' '}
               <Link className={css.formLink} to="/register">
@@ -70,6 +79,7 @@ const Login = () => {
           </Form>
         )}
       </Formik>
+  
     </div>
   );
 };

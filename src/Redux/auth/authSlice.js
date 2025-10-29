@@ -5,6 +5,7 @@ const initialState = {
   user:{name: null, email: null, record:0},
   token:null,
   isLoggedIn: false,
+  isGuest:false,
   isRefreshing: false,
   error: null,
 }
@@ -12,12 +13,24 @@ const initialState = {
 const authSlice = createSlice({
     name: 'auth',
    initialState,
+   reducers:{
+     loginAsGuest(state){
+      state.isLoggedIn = true;
+      state.isGuest = true;
+      state.user = {name:"Guest", email:null, record:0}
+     },
+     logoutAsGuest(state) {
+      state.user = { name: null, email: null, record:0 };
+      state.isGuest = false;
+      state.isLoggedIn = false;
+    },
+   },
    extraReducers:builder =>{
       builder.addCase(registerOperation.fulfilled, (state, {payload})=>{
        
       })
       .addCase(logInOperation.fulfilled, (state, {payload})=>{
-        state.user = payload.user;
+      state.user = payload.user;
       state.token = payload.token;
       state.isLoggedIn = true;
       })
@@ -39,5 +52,5 @@ const authSlice = createSlice({
       })
       
    }})
-
+    export const { loginAsGuest, logoutAsGuest } = authSlice.actions;
     export const authReducer = authSlice.reducer;
