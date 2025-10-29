@@ -25,4 +25,5 @@
 
 ### Description
 
-Application based on the classic snake game. For controlls you have to use arrow keys, for start/stop you can use space button. 
+Application based on the classic snake game. Use the arrow keys to control the snake and the space bar to start/stop the game.
+When using the application for the first time, please wait 10–20 seconds as the backend needs time to start working
