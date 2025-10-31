@@ -2,10 +2,8 @@ import { useEffect, useRef, useState } from "react"
 import PlayArea from "../../Components/PlayArea/PlayArea"
 import Snake from "../../Components/Snake/Snake"
 import {getFood, getGameOver, getGameSpeed, getGameStatus, getSnake } from "../../Redux/game/selector"
-import { useDispatch, useSelector } from 'react-redux';
-import { addDotSnake, changeDirection } from "../../Redux/game/operations";
+import { useSelector } from 'react-redux';
 import StartBtn from "../../Components/StartBtn/StartBtn";
-// import { store } from './Redux/store';
 import moveSnake from "../../Functions/moveSnake";
 import onKeyDown from "../../Functions/onKeyDown";
 import snakeTouchedEdge from "../../Functions/snakeTouchedEdge";
@@ -21,7 +19,6 @@ import Information from "../../Components/Information/Information";
 
 const HomePage = () => {
 
-    const dispatch = useDispatch()  
     const [info, setInfo] = useState(false)
     const status = useSelector(getGameStatus)
     const intervalRef = useRef()
@@ -40,9 +37,7 @@ const HomePage = () => {
           const intervalId = setInterval(moveSnake, speed)
           intervalRef.current = intervalId;
         }
-        else{
-          clearInterval(intervalRef.current)
-        }
+        return () => clearInterval(intervalRef.current);
         
       },[status, gameOver, food])
     
@@ -52,7 +47,7 @@ const HomePage = () => {
         return ()=> {
           document.removeEventListener('keydown', onKeyDown)
         }
-      })
+      }, [])
     
       useEffect(()=>{
         snakeTouchedEdge();

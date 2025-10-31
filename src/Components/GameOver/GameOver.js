@@ -2,14 +2,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import css from './GameOver.module.scss'
 import { getScore } from '../../Redux/game/selector'
 import startNewGame from '../../Functions/startNewGame'
-import { selectRecord } from '../../Redux/auth/selectors'
+import { selectGuest, selectRecord } from '../../Redux/auth/selectors'
 import { changeRecordOperation } from '../../Redux/auth/operations'
 
 const GameOver = () => {
     const dispatch = useDispatch()
     const score = useSelector(getScore)
     const oldRecord = useSelector(selectRecord)
-    if(score>oldRecord){
+    const guest = useSelector(selectGuest)
+    if(!guest && score>oldRecord){
         dispatch(changeRecordOperation({record:score}))
     }
     return(

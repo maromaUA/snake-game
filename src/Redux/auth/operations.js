@@ -28,7 +28,6 @@ const setAuthHeader = token => {
     'auth/login',
     async (data, thunkAPI) => {
       try {
-        console.log(REACT_APP_BACKEND_URL);
         const res = await axios.post('/users/login', data);
         // After successful login, add the token to the HTTP header
         setAuthHeader(res.data.token);
@@ -86,7 +85,6 @@ const setAuthHeader = token => {
           return thunkAPI.rejectWithValue('Unable to fetch user');
         }
         setAuthHeader(persistedToken);
-        console.log("record:", data)
         const res = await axios.patch('/users/changeRecord', data);
     
         return res.data;

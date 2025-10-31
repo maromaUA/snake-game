@@ -4,6 +4,7 @@ import { getScore } from '../../Redux/game/selector'
 import { logOutOperation } from '../../Redux/auth/operations'
 import { selectGuest, selectUser } from '../../Redux/auth/selectors'
 import { logoutAsGuest } from '../../Redux/auth/authSlice'
+import { changeGameStatus, resetState } from '../../Redux/game/operations'
 
 
 
@@ -11,21 +12,16 @@ const ScoreBoard = () => {
     const score = useSelector(getScore)
     const guest = useSelector(selectGuest)
     const user = useSelector(selectUser)
-    
-    // if (guest){
-    //     const user = 'Guest'
-    // }
-    // else{
-    //   const user = useSelector(selectUser)
-    // }
-
-    console.log("user:", user);
     const dispatch = useDispatch()
     const handleLogOut = () => {
         dispatch(logOutOperation())
+        dispatch(resetState())
     }
     const handleLogOutAsGuest =() => {
+        dispatch(changeGameStatus(false))
         dispatch(logoutAsGuest())
+      //  dispatch(changeGameOver(true))
+        dispatch(resetState())
     }
     return (
         <div className={css.wrapper}>

@@ -6,8 +6,6 @@ const onKeyDown = e => {
   const direction = store.getState().game.direction;
   const status = store.getState().game.isPlay;
   const gameOver = store.getState().game.gameOver;
-  console.log(e.code );
-  console.log("Direction:", direction);
     switch(e.code){
       case 'ArrowRight':
         direction!=="left" && store.dispatch(changeDirection("right"))
@@ -22,8 +20,10 @@ const onKeyDown = e => {
         direction!=="up" && store.dispatch(changeDirection("down"))
         break;
       case 'Space':
-       gameOver==false && store.dispatch(changeGameStatus(!status))
+       gameOver===false && store.dispatch(changeGameStatus(!status))
        break;
+       default:
+        break;
     }
   }
 

@@ -44,7 +44,7 @@ const gameSlice = createSlice({
     .addCase(addScore, (state)=>{
       state.score = state.score+1;
     })
-    .addCase(resetState, ()=>initialState)
+    .addCase(resetState, ()=>({...initialState}))
 
   }
   })
